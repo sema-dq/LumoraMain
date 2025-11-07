@@ -23,7 +23,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ language, 
       rightsTitle: "Your Rights",
       contactTitle: "Contact",
       backButton: "Back",
-      lastUpdated: "Last updated: January 2025",
+      lastUpdated: "Last updated: November 2025",
     },
     de: {
       title: "Datenschutzerklärung",
@@ -35,7 +35,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ language, 
       rightsTitle: "Ihre Rechte",
       contactTitle: "Kontakt",
       backButton: "Zurück",
-      lastUpdated: "Zuletzt aktualisiert: Januar 2025",
+      lastUpdated: "Zuletzt aktualisiert: November 2025",
     },
   }
 
