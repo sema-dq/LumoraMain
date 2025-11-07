@@ -41,8 +41,18 @@ import { Separator } from "./components/ui/separator"
 import { ImageWithFallback } from "./components/samuel/ImageWithFallback"
 import { ImpressumPage } from "./components/ImpressumPage"
 import { PrivacyPolicyPage } from "./components/PrivacyPolicyPage"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select"
-import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./components/ui/select"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "./components/ui/alert"
 
 /* ------------------------ Theme Context ------------------------ */
 
@@ -60,7 +70,9 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light"
     const initialTheme = savedTheme || systemTheme
 
     setTheme(initialTheme)
@@ -74,7 +86,11 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     document.documentElement.className = newTheme
   }
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  )
 }
 
 const useTheme = () => {
@@ -129,7 +145,9 @@ const Navigation = ({
                 key={item.id}
                 onClick={() => setActiveSection(item.id)}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  activeSection === item.id ? "text-primary" : "text-muted-foreground"
+                  activeSection === item.id
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }`}
               >
                 {item.label}
@@ -202,7 +220,9 @@ const Navigation = ({
                       setMobileMenuOpen(false)
                     }}
                     className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                      activeSection === item.id ? "text-primary" : "text-muted-foreground"
+                      activeSection === item.id
+                        ? "text-primary"
+                        : "text-muted-foreground"
                     }`}
                   >
                     {item.label}
@@ -883,6 +903,7 @@ const HeroSection = ({
 )
 
 /* ------------------------ Cookie Consent ------------------------ */
+/* Always white like light mode (not affected by dark mode) */
 
 const CookieConsent = ({
   language,
@@ -934,7 +955,7 @@ const CookieConsent = ({
           >
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                {/* Text links (schwarz) */}
+                {/* Text (immer schwarz) */}
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg mb-2 text-black">
                     {translations[language].cookieConsentTitle}
@@ -950,7 +971,7 @@ const CookieConsent = ({
                   </button>
                 </div>
 
-                {/* Buttons rechts */}
+                {/* Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:ml-4">
                   <Button
                     variant="outline"
@@ -1097,7 +1118,7 @@ const Footer = ({
   </footer>
 )
 
-/* ------------------------ Contact Page ------------------------ */
+/* ------------------------ AppContent & App ------------------------ */
 
 const ContactPage = ({
   language,
@@ -1116,7 +1137,9 @@ const ContactPage = ({
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle")
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -1186,7 +1209,7 @@ const ContactPage = ({
         throw new Error("Form submission failed")
       }
     } catch (error) {
-      console.error("[v0] Form submission error:", error)
+      console.error("Form submission error:", error)
       setSubmitStatus("error")
       setTimeout(() => setSubmitStatus("idle"), 5000)
     } finally {
@@ -1204,8 +1227,14 @@ const ContactPage = ({
   const services = [
     { value: "video", label: translations[language].contactServiceVideo },
     { value: "photo", label: translations[language].contactServicePhoto },
-    { value: "social-content", label: translations[language].contactServiceSocialContent },
-    { value: "social-management", label: translations[language].contactServiceSocialManagement },
+    {
+      value: "social-content",
+      label: translations[language].contactServiceSocialContent,
+    },
+    {
+      value: "social-management",
+      label: translations[language].contactServiceSocialManagement,
+    },
     { value: "website", label: translations[language].contactServiceWebsite },
     { value: "all", label: translations[language].contactServiceAll },
   ]
@@ -1269,24 +1298,24 @@ const ContactPage = ({
                   </CardHeader>
                   <CardContent>
                     {submitStatus === "success" && (
-                      <Alert className="mb-6 border-green-500 bg-green-50 dark:bg-green-950">
+                      <Alert className="mb-6 border-green-500 bg-green-50">
                         <CheckCircle2 className="h-4 w-4 text-green-600" />
-                        <AlertTitle className="text-green-800 dark:text-green-200">
+                        <AlertTitle className="text-green-800">
                           {translations[language].contactSuccessTitle}
                         </AlertTitle>
-                        <AlertDescription className="text-green-700 dark:text-green-300">
+                        <AlertDescription className="text-green-700">
                           {translations[language].contactSuccessMessage}
                         </AlertDescription>
                       </Alert>
                     )}
 
                     {submitStatus === "error" && (
-                      <Alert className="mb-6 border-red-500 bg-red-50 dark:bg-red-950">
+                      <Alert className="mb-6 border-red-500 bg-red-50">
                         <AlertCircle className="h-4 w-4 text-red-600" />
-                        <AlertTitle className="text-red-800 dark:text-red-200">
+                        <AlertTitle className="text-red-800">
                           {translations[language].contactErrorTitle}
                         </AlertTitle>
-                        <AlertDescription className="text-red-700 dark:text-red-300">
+                        <AlertDescription className="text-red-700">
                           {translations[language].contactErrorMessage}
                         </AlertDescription>
                       </Alert>
@@ -1365,10 +1394,7 @@ const ContactPage = ({
                           </SelectTrigger>
                           <SelectContent>
                             {services.map((s) => (
-                              <SelectItem
-                                key={s.value}
-                                value={s.value}
-                              >
+                              <SelectItem key={s.value} value={s.value}>
                                 {s.label}
                               </SelectItem>
                             ))}
@@ -1384,7 +1410,8 @@ const ContactPage = ({
                       <div>
                         <Textarea
                           placeholder={
-                            translations[language].contactMessagePlaceholder
+                            translations[language]
+                              .contactMessagePlaceholder
                           }
                           value={formData.message}
                           onChange={(e) =>
@@ -1410,18 +1437,15 @@ const ContactPage = ({
                         {isSubmitting ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            {
-                              translations[language]
-                                .contactSubmitting
-                            }
+                            {translations[language].contactSubmitting}
                           </>
                         ) : (
                           <>
-                            {
-                              translations[language]
-                                .contactSubmitButton
-                            }
-                            <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                            {translations[language].contactSubmitButton}
+                            <Send
+                              className="ml-2 group-hover:translate-x-1 transition-transform"
+                              size={16}
+                            />
                           </>
                         )}
                       </Button>
@@ -1460,7 +1484,10 @@ const ContactPage = ({
                       }
                     >
                       {translations[language].contactQuickBookButton}
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                      <ArrowRight
+                        className="ml-2 group-hover:translate-x-1 transition-transform"
+                        size={16}
+                      />
                     </Button>
                   </CardContent>
                 </Card>
@@ -1556,7 +1583,7 @@ const ContactPage = ({
   )
 }
 
-/* ------------------------ AppContent & App ------------------------ */
+/* ------------------------ AppContent ------------------------ */
 
 const AppContent = ({
   language,
@@ -1658,6 +1685,8 @@ const AppContent = ({
     </div>
   )
 }
+
+/* ------------------------ App ------------------------ */
 
 export default function App() {
   const [language, setLanguage] = useState<"en" | "de">("de")
