@@ -825,42 +825,76 @@ const CookieConsent = ({
   if (!isVisible) return null
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 100, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6"
+  <AnimatePresence>
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 100, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6"
+    >
+      <Card
+        className="
+          max-w-4xl mx-auto
+          border border-border
+          shadow-2xl
+          bg-white text-gray-900
+          dark:bg-neutral-900 dark:text-neutral-50
+          rounded-2xl
+        "
       >
-        <Card className="max-w-4xl mx-auto border-2 shadow-2xl">
-          <CardContent className="p-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-2">{translations[language].cookieConsentTitle}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{translations[language].cookieConsentDescription}</p>
-                <button
-                  onClick={() => setActiveSection("privacy-policy")}
-                  className="text-sm text-primary hover:underline"
-                >
-                  {translations[language].cookieConsentLearnMore}
-                </button>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <Button variant="outline" onClick={handleDecline} className="w-full sm:w-auto bg-transparent">
-                  {translations[language].cookieConsentDecline}
-                </Button>
-                <Button onClick={handleAccept} className="w-full sm:w-auto">
-                  {translations[language].cookieConsentAccept}
-                </Button>
-              </div>
+        <CardContent className="p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            {/* Text */}
+            <div className="flex-1">
+              <h3 className="font-semibold text-lg mb-2">
+                {translations[language].cookieConsentTitle}
+              </h3>
+              <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                {translations[language].cookieConsentDescription}
+              </p>
+              <button
+                onClick={() => setActiveSection("privacy-policy")}
+                className="text-sm text-primary hover:underline"
+              >
+                {translations[language].cookieConsentLearnMore}
+              </button>
             </div>
-          </CardContent>
-        </Card>
-      </motion.div>
-    </AnimatePresence>
-  )
-}
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Button
+                variant="outline"
+                onClick={handleDecline}
+                className="
+                  w-full sm:w-auto
+                  border-gray-300
+                  text-gray-700
+                  dark:border-neutral-600
+                  dark:text-neutral-100
+                  bg-transparent
+                  hover:bg-gray-100 dark:hover:bg-neutral-800
+                "
+              >
+                {translations[language].cookieConsentDecline}
+              </Button>
+              <Button
+                onClick={handleAccept}
+                className="
+                  w-full sm:w-auto
+                  bg-primary text-white
+                  hover:bg-primary/90
+                "
+              >
+                {translations[language].cookieConsentAccept}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  </AnimatePresence>
+)
 
 const AppContent = ({
   language,
