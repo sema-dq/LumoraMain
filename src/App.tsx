@@ -79,9 +79,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
 const useTheme = () => {
   const context = useContext(ThemeContext)
-  if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider")
-  }
+  if (!context) throw new Error("useTheme must be used within a ThemeProvider")
   return context
 }
 
@@ -146,7 +144,9 @@ const Navigation = ({
               <button
                 onClick={() => setLanguage("de")}
                 className={`text-sm font-medium transition-colors ${
-                  language === "de" ? "text-primary" : "text-muted-foreground hover:text-primary"
+                  language === "de"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 DE
@@ -155,7 +155,9 @@ const Navigation = ({
               <button
                 onClick={() => setLanguage("en")}
                 className={`text-sm font-medium transition-colors ${
-                  language === "en" ? "text-primary" : "text-muted-foreground hover:text-primary"
+                  language === "en"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 EN
@@ -210,7 +212,9 @@ const Navigation = ({
                   <button
                     onClick={() => setLanguage("de")}
                     className={`text-sm font-medium transition-colors ${
-                      language === "de" ? "text-primary" : "text-muted-foreground hover:text-primary"
+                      language === "de"
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     DE
@@ -219,7 +223,9 @@ const Navigation = ({
                   <button
                     onClick={() => setLanguage("en")}
                     className={`text-sm font-medium transition-colors ${
-                      language === "en" ? "text-primary" : "text-muted-foreground hover:text-primary"
+                      language === "en"
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     EN
@@ -273,7 +279,9 @@ const ClientLogos = ({ language }: { language: "en" | "de" }) => {
                     <div
                       className={`w-12 h-12 ${client.color} rounded-full mx-auto mb-3 flex items-center justify-center`}
                     >
-                      <span className="text-white font-bold text-lg">{client.name.charAt(0)}</span>
+                      <span className="text-white font-bold text-lg">
+                        {client.name.charAt(0)}
+                      </span>
                     </div>
                     <h3 className="font-semibold text-lg">{client.name}</h3>
                   </div>
@@ -331,7 +339,9 @@ const ServicesSection = ({ language }: { language: "en" | "de" }) => {
           </Badge>
           <h2 className="text-3xl md:text-4xl mb-4">
             {translations[language].servicesHeading.split("{highlight}")[0]}
-            <span className="text-primary">{translations[language].servicesHeadingHighlight}</span>
+            <span className="text-primary">
+              {translations[language].servicesHeadingHighlight}
+            </span>
             {translations[language].servicesHeading.split("{highlight}")[1]}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -356,7 +366,9 @@ const ServicesSection = ({ language }: { language: "en" | "de" }) => {
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -368,14 +380,19 @@ const ServicesSection = ({ language }: { language: "en" | "de" }) => {
 }
 
 const CaseStudyHighlight = ({ language }: { language: "en" | "de" }) => {
-  // Platzhalter – bei Bedarf ausbauen
+  // Placeholder
   return null
 }
+
+/* ------------------------ About Page ------------------------ */
 
 const AboutPage = ({
   language,
   setActiveSection,
-}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => {
+}: {
+  language: "en" | "de"
+  setActiveSection: (section: string) => void
+}) => {
   const values = [
     {
       icon: Target,
@@ -404,10 +421,16 @@ const AboutPage = ({
       {/* Hero */}
       <section className="pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h1 className="text-4xl md:text-6xl mb-6">
               {translations[language].aboutHeroTitle.split("{highlight}")[0]}
-              <span className="text-primary">{translations[language].aboutHeroTitleHighlight}</span>
+              <span className="text-primary">
+                {translations[language].aboutHeroTitleHighlight}
+              </span>
               {translations[language].aboutHeroTitle.split("{highlight}")[1]}
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -429,7 +452,9 @@ const AboutPage = ({
             >
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{translations[language].aboutMissionTitle}</CardTitle>
+                  <CardTitle className="text-2xl">
+                    {translations[language].aboutMissionTitle}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-lg">
@@ -447,7 +472,9 @@ const AboutPage = ({
             >
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{translations[language].aboutVisionTitle}</CardTitle>
+                  <CardTitle className="text-2xl">
+                    {translations[language].aboutVisionTitle}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-lg">
@@ -492,7 +519,9 @@ const AboutPage = ({
                     <CardTitle className="text-xl">{value.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">{value.description}</p>
+                    <p className="text-muted-foreground">
+                      {value.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -532,10 +561,15 @@ const AboutPage = ({
   )
 }
 
+/* ------------------------ Services Page ------------------------ */
+
 const ServicesPage = ({
   language,
   setActiveSection,
-}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => {
+}: {
+  language: "en" | "de"
+  setActiveSection: (section: string) => void
+}) => {
   const services = [
     {
       title: translations[language].serviceVideoProductionTitle,
@@ -569,7 +603,11 @@ const ServicesPage = ({
       {/* Hero */}
       <section className="pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <Badge variant="secondary" className="mb-4">
               {translations[language].servicesTitle}
             </Badge>
@@ -583,7 +621,11 @@ const ServicesPage = ({
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               {translations[language].servicesPageHeroDescription}
             </p>
-            <Button size="lg" className="group" onClick={() => setActiveSection("contact")}>
+            <Button
+              size="lg"
+              className="group"
+              onClick={() => setActiveSection("contact")}
+            >
               {translations[language].heroBookCall}
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
             </Button>
@@ -653,7 +695,7 @@ const ServicesPage = ({
   )
 }
 
-/* ------------------------ Testimonials & CTA ------------------------ */
+/* ------------------------ Testimonials & Final CTA ------------------------ */
 
 const Testimonials = ({ language }: { language: "en" | "de" }) => {
   const testimonials = [
@@ -702,9 +744,9 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((t, index) => (
             <motion.div
-              key={testimonial.company}
+              key={t.company}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -713,18 +755,18 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
               <Card className="h-full">
                 <CardContent className="pt-6">
                   <p className="text-muted-foreground mb-6 italic">
-                    "{testimonial.content}"
+                    "{t.content}"
                   </p>
                   <div className="flex items-center space-x-3">
                     <ImageWithFallback
-                      src={testimonial.avatar || "/placeholder.svg"}
-                      alt={`${testimonial.company} logo`}
+                      src={t.avatar || "/placeholder.svg"}
+                      alt={`${t.company} logo`}
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <div className="font-medium">{testimonial.company}</div>
+                      <div className="font-medium">{t.company}</div>
                       <div className="text-sm text-muted-foreground">
-                        {testimonial.role}
+                        {t.role}
                       </div>
                     </div>
                   </div>
@@ -741,7 +783,10 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
 const FinalCTA = ({
   language,
   setActiveSection,
-}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => (
+}: {
+  language: "en" | "de"
+  setActiveSection: (section: string) => void
+}) => (
   <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">
     <div className="max-w-4xl mx-auto text-center">
       <motion.div
@@ -772,21 +817,24 @@ const FinalCTA = ({
   </section>
 )
 
-/* ------------------------ Hero ------------------------ */
+/* ------------------------ Hero Section ------------------------ */
 
 const HeroSection = ({
   language,
   setActiveSection,
-}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => (
+}: {
+  language: "en" | "de"
+  setActiveSection: (section: string) => void
+}) => (
   <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-[600px]">
     <div className="max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <div className="min-h-[400px] flex flex-col justify-center">
           <motion.div
+            key={language}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            key={language}
           >
             <Badge variant="secondary" className="mb-4 h-6">
               {translations[language].heroBadge}
@@ -874,15 +922,24 @@ const CookieConsent = ({
           transition={{ duration: 0.25 }}
           className="fixed bottom-4 left-0 right-0 z-50 px-4 sm:px-6 flex justify-center"
         >
-          <Card className="max-w-3xl w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-2xl">
+          <Card
+            className="
+              max-w-3xl w-full
+              rounded-2xl
+              border border-gray-200
+              bg-white
+              text-black
+              shadow-2xl
+            "
+          >
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                {/* Text */}
+                {/* Text links (schwarz) */}
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-2">
+                  <h3 className="font-semibold text-lg mb-2 text-black">
                     {translations[language].cookieConsentTitle}
                   </h3>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">
+                  <p className="text-sm mb-3 leading-relaxed text-black">
                     {translations[language].cookieConsentDescription}
                   </p>
                   <button
@@ -893,18 +950,29 @@ const CookieConsent = ({
                   </button>
                 </div>
 
-                {/* Buttons */}
+                {/* Buttons rechts */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:ml-4">
                   <Button
                     variant="outline"
                     onClick={handleDecline}
-                    className="px-5 py-2 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="
+                      px-5 py-2
+                      border-gray-300
+                      text-gray-800
+                      bg-transparent
+                      hover:bg-gray-100
+                    "
                   >
                     {translations[language].cookieConsentDecline}
                   </Button>
                   <Button
                     onClick={handleAccept}
-                    className="px-5 py-2 bg-primary text-white hover:bg-primary/90"
+                    className="
+                      px-5 py-2
+                      bg-primary
+                      text-white
+                      hover:bg-primary/90
+                    "
                   >
                     {translations[language].cookieConsentAccept}
                   </Button>
@@ -1075,7 +1143,6 @@ const ContactPage = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     if (!validateForm()) return
 
     setIsSubmitting(true)
@@ -1161,7 +1228,11 @@ const ContactPage = ({
       {/* Hero */}
       <section className="pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-transparent">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <Badge variant="secondary" className="mb-4">
               {translations[language].contactTitle}
             </Badge>
@@ -1185,7 +1256,11 @@ const ContactPage = ({
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Form */}
             <div className="lg:col-span-2">
-              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Card className="border-2">
                   <CardHeader>
                     <CardTitle className="text-2xl">
@@ -1223,7 +1298,9 @@ const ContactPage = ({
                           type="text"
                           placeholder={translations[language].contactNamePlaceholder}
                           value={formData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("name", e.target.value)
+                          }
                           className={errors.name ? "border-red-500" : ""}
                         />
                         {errors.name && (
@@ -1238,7 +1315,9 @@ const ContactPage = ({
                           type="email"
                           placeholder={translations[language].contactEmailPlaceholder}
                           value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("email", e.target.value)
+                          }
                           className={errors.email ? "border-red-500" : ""}
                         />
                         {errors.email && (
@@ -1253,30 +1332,44 @@ const ContactPage = ({
                           type="tel"
                           placeholder={translations[language].contactPhonePlaceholder}
                           value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("phone", e.target.value)
+                          }
                         />
                         <Input
                           type="text"
                           placeholder={translations[language].contactCompanyPlaceholder}
                           value={formData.company}
-                          onChange={(e) => handleInputChange("company", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("company", e.target.value)
+                          }
                         />
                       </div>
 
                       <div>
                         <Select
                           value={formData.service}
-                          onValueChange={(value) => handleInputChange("service", value)}
+                          onValueChange={(value) =>
+                            handleInputChange("service", value)
+                          }
                         >
-                          <SelectTrigger className={errors.service ? "border-red-500" : ""}>
+                          <SelectTrigger
+                            className={errors.service ? "border-red-500" : ""}
+                          >
                             <SelectValue
-                              placeholder={translations[language].contactServicePlaceholder}
+                              placeholder={
+                                translations[language]
+                                  .contactServicePlaceholder
+                              }
                             />
                           </SelectTrigger>
                           <SelectContent>
-                            {services.map((service) => (
-                              <SelectItem key={service.value} value={service.value}>
-                                {service.label}
+                            {services.map((s) => (
+                              <SelectItem
+                                key={s.value}
+                                value={s.value}
+                              >
+                                {s.label}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -1290,9 +1383,13 @@ const ContactPage = ({
 
                       <div>
                         <Textarea
-                          placeholder={translations[language].contactMessagePlaceholder}
+                          placeholder={
+                            translations[language].contactMessagePlaceholder
+                          }
                           value={formData.message}
-                          onChange={(e) => handleInputChange("message", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("message", e.target.value)
+                          }
                           className={`min-h-[150px] ${
                             errors.message ? "border-red-500" : ""
                           }`}
@@ -1313,11 +1410,17 @@ const ContactPage = ({
                         {isSubmitting ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            {translations[language].contactSubmitting}
+                            {
+                              translations[language]
+                                .contactSubmitting
+                            }
                           </>
                         ) : (
                           <>
-                            {translations[language].contactSubmitButton}
+                            {
+                              translations[language]
+                                .contactSubmitButton
+                            }
                             <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
                           </>
                         )}
@@ -1469,12 +1572,18 @@ const AppContent = ({
       case "home":
         return (
           <>
-            <HeroSection language={language} setActiveSection={setActiveSection} />
+            <HeroSection
+              language={language}
+              setActiveSection={setActiveSection}
+            />
             <ClientLogos language={language} />
             <ServicesSection language={language} />
             <CaseStudyHighlight language={language} />
             <Testimonials language={language} />
-            <FinalCTA language={language} setActiveSection={setActiveSection} />
+            <FinalCTA
+              language={language}
+              setActiveSection={setActiveSection}
+            />
           </>
         )
       case "about":
@@ -1538,18 +1647,24 @@ const AppContent = ({
           </motion.div>
         </AnimatePresence>
       </main>
-      <Footer language={language} setActiveSection={setActiveSection} />
-      <CookieConsent language={language} setActiveSection={setActiveSection} />
+      <Footer
+        language={language}
+        setActiveSection={setActiveSection}
+      />
+      <CookieConsent
+        language={language}
+        setActiveSection={setActiveSection}
+      />
     </div>
   )
 }
 
 export default function App() {
   const [language, setLanguage] = useState<"en" | "de">("de")
+
   return (
     <ThemeProvider>
       <AppContent language={language} setLanguage={setLanguage} />
     </ThemeProvider>
   )
 }
-
