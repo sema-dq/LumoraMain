@@ -1,9 +1,11 @@
 "use client"
 
-import React from "react"
-import ReactDOM from "react-dom/client"
-import App from "./App"
-import { useState, useContext, createContext, useEffect } from "react"
+import React, {
+  useState,
+  useContext,
+  createContext,
+  useEffect,
+} from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   ArrowRight,
@@ -26,9 +28,7 @@ import {
   CheckCircle2,
   AlertCircle,
   Loader2,
-  Linkedin,
   Instagram,
-  Twitter,
   Music,
 } from "lucide-react"
 import { translations } from "./i18n"
@@ -44,7 +44,8 @@ import { PrivacyPolicyPage } from "./components/PrivacyPolicyPage"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select"
 import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert"
 
-// Theme Context
+/* ------------------------ Theme Context ------------------------ */
+
 type Theme = "light" | "dark"
 
 interface ThemeContextType {
@@ -58,7 +59,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<Theme>("light")
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme
+    const savedTheme = localStorage.getItem("theme") as Theme | null
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
     const initialTheme = savedTheme || systemTheme
 
@@ -84,7 +85,8 @@ const useTheme = () => {
   return context
 }
 
-// Navigation component inline
+/* ------------------------ Navigation ------------------------ */
+
 const Navigation = ({
   activeSection,
   setActiveSection,
@@ -137,9 +139,9 @@ const Navigation = ({
             ))}
           </div>
 
-          {/* Right Side Actions */}
+          {/* Right Side */}
           <div className="flex items-center space-x-4">
-            {/* Language Switcher */}
+            {/* Language Switch */}
             <div className="hidden md:flex items-center space-x-2">
               <button
                 onClick={() => setLanguage("de")}
@@ -232,6 +234,8 @@ const Navigation = ({
   )
 }
 
+/* ------------------------ Sections ------------------------ */
+
 const ClientLogos = ({ language }: { language: "en" | "de" }) => {
   const clients = [
     { name: "KinderOase", color: "bg-blue-500" },
@@ -283,7 +287,6 @@ const ClientLogos = ({ language }: { language: "en" | "de" }) => {
   )
 }
 
-// ServicesSection component inline
 const ServicesSection = ({ language }: { language: "en" | "de" }) => {
   const services = [
     {
@@ -331,7 +334,9 @@ const ServicesSection = ({ language }: { language: "en" | "de" }) => {
             <span className="text-primary">{translations[language].servicesHeadingHighlight}</span>
             {translations[language].servicesHeading.split("{highlight}")[1]}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{translations[language].servicesSubheading}</p>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            {translations[language].servicesSubheading}
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -362,8 +367,8 @@ const ServicesSection = ({ language }: { language: "en" | "de" }) => {
   )
 }
 
-// CaseStudyHighlight component inline
 const CaseStudyHighlight = ({ language }: { language: "en" | "de" }) => {
+  // Platzhalter – bei Bedarf ausbauen
   return null
 }
 
@@ -396,7 +401,7 @@ const AboutPage = ({
 
   return (
     <div className="pt-24">
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -427,7 +432,9 @@ const AboutPage = ({
                   <CardTitle className="text-2xl">{translations[language].aboutMissionTitle}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground text-lg">{translations[language].aboutMissionDescription}</p>
+                  <p className="text-muted-foreground text-lg">
+                    {translations[language].aboutMissionDescription}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -443,7 +450,9 @@ const AboutPage = ({
                   <CardTitle className="text-2xl">{translations[language].aboutVisionTitle}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground text-lg">{translations[language].aboutVisionDescription}</p>
+                  <p className="text-muted-foreground text-lg">
+                    {translations[language].aboutVisionDescription}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -461,7 +470,9 @@ const AboutPage = ({
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl mb-4">{translations[language].aboutValuesTitle}</h2>
+            <h2 className="text-3xl md:text-4xl mb-4">
+              {translations[language].aboutValuesTitle}
+            </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -499,9 +510,18 @@ const AboutPage = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">{translations[language].aboutCtaTitle}</h2>
-            <p className="text-xl mb-8 opacity-90">{translations[language].aboutCtaDescription}</p>
-            <Button size="lg" variant="secondary" className="group" onClick={() => setActiveSection("contact")}>
+            <h2 className="text-3xl md:text-4xl mb-6">
+              {translations[language].aboutCtaTitle}
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              {translations[language].aboutCtaDescription}
+            </p>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="group"
+              onClick={() => setActiveSection("contact")}
+            >
               {translations[language].aboutCtaButton}
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
             </Button>
@@ -546,7 +566,7 @@ const ServicesPage = ({
 
   return (
     <div className="pt-24">
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -555,7 +575,9 @@ const ServicesPage = ({
             </Badge>
             <h1 className="text-4xl md:text-6xl mb-6">
               {translations[language].servicesPageHeroTitle.split("{highlight}")[0]}
-              <span className="text-primary">{translations[language].servicesPageHeroTitleHighlight}</span>
+              <span className="text-primary">
+                {translations[language].servicesPageHeroTitleHighlight}
+              </span>
               {translations[language].servicesPageHeroTitle.split("{highlight}")[1]}
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -589,7 +611,9 @@ const ServicesPage = ({
                     <CardTitle className="text-xl">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground text-lg leading-relaxed">{service.description}</p>
+                    <p className="text-muted-foreground text-lg leading-relaxed">
+                      {service.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -607,8 +631,12 @@ const ServicesPage = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">{translations[language].finalCTAHeading}</h2>
-            <p className="text-xl mb-8 opacity-90">{translations[language].finalCTADescription}</p>
+            <h2 className="text-3xl md:text-4xl mb-6">
+              {translations[language].finalCTAHeading}
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              {translations[language].finalCTADescription}
+            </p>
             <Button
               size="lg"
               variant="secondary"
@@ -625,7 +653,8 @@ const ServicesPage = ({
   )
 }
 
-// Testimonials component inline
+/* ------------------------ Testimonials & CTA ------------------------ */
+
 const Testimonials = ({ language }: { language: "en" | "de" }) => {
   const testimonials = [
     {
@@ -664,8 +693,12 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl mb-4">{translations[language].testimonialHeading}</h2>
-          <p className="text-xl text-muted-foreground">{translations[language].testimonialSubheading}</p>
+          <h2 className="text-3xl md:text-4xl mb-4">
+            {translations[language].testimonialHeading}
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            {translations[language].testimonialSubheading}
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -679,7 +712,9 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
             >
               <Card className="h-full">
                 <CardContent className="pt-6">
-                  <p className="text-muted-foreground mb-6 italic">"{testimonial.content}"</p>
+                  <p className="text-muted-foreground mb-6 italic">
+                    "{testimonial.content}"
+                  </p>
                   <div className="flex items-center space-x-3">
                     <ImageWithFallback
                       src={testimonial.avatar || "/placeholder.svg"}
@@ -688,7 +723,9 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
                     />
                     <div>
                       <div className="font-medium">{testimonial.company}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {testimonial.role}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -704,96 +741,100 @@ const Testimonials = ({ language }: { language: "en" | "de" }) => {
 const FinalCTA = ({
   language,
   setActiveSection,
-}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => {
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl md:text-4xl mb-6">{translations[language].finalCTAHeading}</h2>
-          <p className="text-xl mb-8 opacity-90">{translations[language].finalCTADescription}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="group bg-white text-slate-900 hover:bg-slate-100 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
-              onClick={() => setActiveSection("contact")}
-            >
-              {translations[language].finalCTAButton1}
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-            </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
+}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => (
+  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">
+    <div className="max-w-4xl mx-auto text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-3xl md:text-4xl mb-6">
+          {translations[language].finalCTAHeading}
+        </h2>
+        <p className="text-xl mb-8 opacity-90">
+          {translations[language].finalCTADescription}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button
+            size="lg"
+            variant="secondary"
+            className="group bg-white text-slate-900 hover:bg-slate-100 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+            onClick={() => setActiveSection("contact")}
+          >
+            {translations[language].finalCTAButton1}
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+          </Button>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+)
+
+/* ------------------------ Hero ------------------------ */
 
 const HeroSection = ({
   language,
   setActiveSection,
-}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => {
-  return (
-    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-[600px]">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="min-h-[400px] flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              key={language}
-            >
-              <Badge variant="secondary" className="mb-4 h-6">
-                {translations[language].heroBadge}
-              </Badge>
-              <h1 className="text-4xl md:text-6xl mb-6 leading-tight min-h-[120px] md:min-h-[180px]">
-                {translations[language].heroTitle.split("{highlight}")[0]}
-                <span className="text-primary">{translations[language].heroTitleHighlight}</span>
-                {translations[language].heroTitle.split("{highlight}")[1]}
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-xl min-h-[80px]">
-                {translations[language].heroParagraph}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="group min-w-[200px] justify-center"
-                  onClick={() => setActiveSection("contact")}
-                >
-                  {translations[language].heroBookCall}
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-
+}: { language: "en" | "de"; setActiveSection: (section: string) => void }) => (
+  <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-[600px]">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="min-h-[400px] flex flex-col justify-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            key={language}
           >
-            <div className="relative rounded-2xl overflow-hidden">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1676282827533-d6058df56a69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMG1hcmtldGluZyUyMHRlYW0lMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzU4Njk0ODg5fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt={translations[language].heroImageAlt}
-                className="w-full h-96 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+            <Badge variant="secondary" className="mb-4 h-6">
+              {translations[language].heroBadge}
+            </Badge>
+            <h1 className="text-4xl md:text-6xl mb-6 leading-tight min-h-[120px] md:min-h-[180px]">
+              {translations[language].heroTitle.split("{highlight}")[0]}
+              <span className="text-primary">
+                {translations[language].heroTitleHighlight}
+              </span>
+              {translations[language].heroTitle.split("{highlight}")[1]}
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-xl min-h-[80px]">
+              {translations[language].heroParagraph}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                size="lg"
+                className="group min-w-[200px] justify-center"
+                onClick={() => setActiveSection("contact")}
+              >
+                {translations[language].heroBookCall}
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+              </Button>
             </div>
-
-            {/* Floating Stats */}
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="relative rounded-2xl overflow-hidden">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1676282827533-d6058df56a69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMG1hcmtldGluZyUyMHRlYW0lMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzU4Njk0ODg5fDA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt={translations[language].heroImageAlt}
+              className="w-full h-96 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+          </div>
+        </motion.div>
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)
+
+/* ------------------------ Cookie Consent ------------------------ */
 
 const CookieConsent = ({
   language,
@@ -807,8 +848,7 @@ const CookieConsent = ({
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent")
     if (!consent) {
-      // Show banner after a short delay for better UX
-      setTimeout(() => setIsVisible(true), 1000)
+      setTimeout(() => setIsVisible(true), 800)
     }
   }, [])
 
@@ -826,76 +866,594 @@ const CookieConsent = ({
 
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 100, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6"
-      >
-        <Card
-          className="
-            max-w-4xl mx-auto
-            border border-border
-            shadow-2xl
-            bg-white text-gray-900
-            dark:bg-neutral-900 dark:text-neutral-50
-            rounded-2xl
-          "
+      {isVisible && (
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 40, opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed bottom-4 left-0 right-0 z-50 px-4 sm:px-6 flex justify-center"
         >
-          <CardContent className="p-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              {/* Text */}
-              <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-2">
-                  {translations[language].cookieConsentTitle}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
-                  {translations[language].cookieConsentDescription}
-                </p>
-                <button
-                  onClick={() => setActiveSection("privacy-policy")}
-                  className="text-sm text-primary hover:underline"
-                >
-                  {translations[language].cookieConsentLearnMore}
-                </button>
-              </div>
+          <Card className="max-w-3xl w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-2xl">
+            <CardContent className="p-6">
+              <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                {/* Text */}
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg mb-2">
+                    {translations[language].cookieConsentTitle}
+                  </h3>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">
+                    {translations[language].cookieConsentDescription}
+                  </p>
+                  <button
+                    onClick={() => setActiveSection("privacy-policy")}
+                    className="text-sm font-medium text-primary hover:underline"
+                  >
+                    {translations[language].cookieConsentLearnMore}
+                  </button>
+                </div>
 
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <Button
-                  variant="outline"
-                  onClick={handleDecline}
-                  className="
-                    w-full sm:w-auto
-                    border-gray-300
-                    text-gray-700
-                    dark:border-neutral-600
-                    dark:text-neutral-100
-                    bg-transparent
-                    hover:bg-gray-100 dark:hover:bg-neutral-800
-                  "
-                >
-                  {translations[language].cookieConsentDecline}
-                </Button>
-                <Button
-                  onClick={handleAccept}
-                  className="
-                    w-full sm:w-auto
-                    bg-primary text-white
-                    hover:bg-primary/90
-                  "
-                >
-                  {translations[language].cookieConsentAccept}
-                </Button>
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:ml-4">
+                  <Button
+                    variant="outline"
+                    onClick={handleDecline}
+                    className="px-5 py-2 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    {translations[language].cookieConsentDecline}
+                  </Button>
+                  <Button
+                    onClick={handleAccept}
+                    className="px-5 py-2 bg-primary text-white hover:bg-primary/90"
+                  >
+                    {translations[language].cookieConsentAccept}
+                  </Button>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
     </AnimatePresence>
   )
 }
+
+/* ------------------------ Footer ------------------------ */
+
+const Footer = ({
+  language,
+  setActiveSection,
+}: {
+  language: "en" | "de"
+  setActiveSection: (section: string) => void
+}) => (
+  <footer className="bg-muted/30 border-t border-border py-12 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid md:grid-cols-4 gap-8 mb-8">
+        {/* Company Info */}
+        <div className="md:col-span-2">
+          <h3 className="text-2xl font-bold text-primary mb-4">Lumora</h3>
+          <p className="text-muted-foreground mb-4">
+            {translations[language].footerDescription}
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="font-semibold mb-4">
+            {translations[language].footerQuickLinks}
+          </h4>
+          <ul className="space-y-2">
+            <li>
+              <button
+                onClick={() => setActiveSection("home")}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {translations[language].navHome}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setActiveSection("services")}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {translations[language].navServices}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setActiveSection("about")}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {translations[language].navAbout}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setActiveSection("contact")}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {translations[language].navContact}
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* Legal */}
+        <div>
+          <h4 className="font-semibold mb-4">
+            {translations[language].footerLegal}
+          </h4>
+          <ul className="space-y-2">
+            <li>
+              <button
+                onClick={() => setActiveSection("impressum")}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {translations[language].footerImpressum}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setActiveSection("privacy-policy")}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {translations[language].footerPrivacy}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <Separator className="my-8" />
+
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <p className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Lumora Marketing.{" "}
+          {translations[language].footerRights}
+        </p>
+        <div className="flex space-x-6 mt-4 md:mt-0">
+          {["Instagram", "TikTok"].map((social) => (
+            <motion.a
+              key={social}
+              href="#"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.1 }}
+            >
+              {social}
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </footer>
+)
+
+/* ------------------------ Contact Page ------------------------ */
+
+const ContactPage = ({
+  language,
+  setActiveSection,
+}: {
+  language: "en" | "de"
+  setActiveSection: (section: string) => void
+}) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    service: "",
+    message: "",
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.name.trim()) newErrors.name = "Name is required"
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format"
+    }
+
+    if (!formData.service) newErrors.service = "Please select a service"
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required"
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) return
+
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "8a88e835-5ae0-4a39-936d-ce0829a6b11a",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
+          to: "info@lumoramarketing.de",
+          subject: `New Contact Form Submission from ${formData.name}`,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus("success")
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          service: "",
+          message: "",
+        })
+        setErrors({})
+        setTimeout(() => setSubmitStatus("idle"), 5000)
+      } else {
+        throw new Error("Form submission failed")
+      }
+    } catch (error) {
+      console.error("[v0] Form submission error:", error)
+      setSubmitStatus("error")
+      setTimeout(() => setSubmitStatus("idle"), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: "" }))
+    }
+  }
+
+  const services = [
+    { value: "video", label: translations[language].contactServiceVideo },
+    { value: "photo", label: translations[language].contactServicePhoto },
+    { value: "social-content", label: translations[language].contactServiceSocialContent },
+    { value: "social-management", label: translations[language].contactServiceSocialManagement },
+    { value: "website", label: translations[language].contactServiceWebsite },
+    { value: "all", label: translations[language].contactServiceAll },
+  ]
+
+  const socialMediaLinks = [
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "https://www.instagram.com/lumora.marketingagentur?igsh=YzVrZ2didTFlZTQz&utm_source=qr",
+    },
+    {
+      name: "TikTok",
+      icon: Music,
+      url: "https://www.tiktok.com/@lumora.marketingagentur?_r=1&_t=ZN-91B086NiuKE",
+    },
+  ]
+
+  return (
+    <div className="pt-24">
+      {/* Hero */}
+      <section className="pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-transparent">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <Badge variant="secondary" className="mb-4">
+              {translations[language].contactTitle}
+            </Badge>
+            <h1 className="text-4xl md:text-6xl mb-6">
+              {translations[language].contactHeroTitle.split("{highlight}")[0]}
+              <span className="text-primary">
+                {translations[language].contactHeroTitleHighlight}
+              </span>
+              {translations[language].contactHeroTitle.split("{highlight}")[1]}
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              {translations[language].contactHeroDescription}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Form */}
+            <div className="lg:col-span-2">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <Card className="border-2">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">
+                      {translations[language].contactFormTitle}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {submitStatus === "success" && (
+                      <Alert className="mb-6 border-green-500 bg-green-50 dark:bg-green-950">
+                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <AlertTitle className="text-green-800 dark:text-green-200">
+                          {translations[language].contactSuccessTitle}
+                        </AlertTitle>
+                        <AlertDescription className="text-green-700 dark:text-green-300">
+                          {translations[language].contactSuccessMessage}
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
+                    {submitStatus === "error" && (
+                      <Alert className="mb-6 border-red-500 bg-red-50 dark:bg-red-950">
+                        <AlertCircle className="h-4 w-4 text-red-600" />
+                        <AlertTitle className="text-red-800 dark:text-red-200">
+                          {translations[language].contactErrorTitle}
+                        </AlertTitle>
+                        <AlertDescription className="text-red-700 dark:text-red-300">
+                          {translations[language].contactErrorMessage}
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div>
+                        <Input
+                          type="text"
+                          placeholder={translations[language].contactNamePlaceholder}
+                          value={formData.name}
+                          onChange={(e) => handleInputChange("name", e.target.value)}
+                          className={errors.name ? "border-red-500" : ""}
+                        />
+                        {errors.name && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.name}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Input
+                          type="email"
+                          placeholder={translations[language].contactEmailPlaceholder}
+                          value={formData.email}
+                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          className={errors.email ? "border-red-500" : ""}
+                        />
+                        {errors.email && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <Input
+                          type="tel"
+                          placeholder={translations[language].contactPhonePlaceholder}
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange("phone", e.target.value)}
+                        />
+                        <Input
+                          type="text"
+                          placeholder={translations[language].contactCompanyPlaceholder}
+                          value={formData.company}
+                          onChange={(e) => handleInputChange("company", e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <Select
+                          value={formData.service}
+                          onValueChange={(value) => handleInputChange("service", value)}
+                        >
+                          <SelectTrigger className={errors.service ? "border-red-500" : ""}>
+                            <SelectValue
+                              placeholder={translations[language].contactServicePlaceholder}
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {services.map((service) => (
+                              <SelectItem key={service.value} value={service.value}>
+                                {service.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        {errors.service && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.service}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Textarea
+                          placeholder={translations[language].contactMessagePlaceholder}
+                          value={formData.message}
+                          onChange={(e) => handleInputChange("message", e.target.value)}
+                          className={`min-h-[150px] ${
+                            errors.message ? "border-red-500" : ""
+                          }`}
+                        />
+                        {errors.message && (
+                          <p className="text-sm text-red-500 mt-1">
+                            {errors.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full group"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            {translations[language].contactSubmitting}
+                          </>
+                        ) : (
+                          <>
+                            {translations[language].contactSubmitButton}
+                            <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Card className="bg-primary text-primary-foreground border-0">
+                  <CardHeader>
+                    <CardTitle className="text-xl">
+                      {translations[language].contactQuickBookTitle}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-6 opacity-90">
+                      {translations[language].contactQuickBookDescription}
+                    </p>
+                    <Button
+                      size="lg"
+                      variant="secondary"
+                      className="w-full group"
+                      onClick={() =>
+                        window.open(
+                          "https://calendly.com/lumora-marketing",
+                          "_blank",
+                        )
+                      }
+                    >
+                      {translations[language].contactQuickBookButton}
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-xl">
+                      {translations[language].contactInfoTitle}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <Mail className="text-primary mt-1" size={20} />
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Email
+                        </p>
+                        <a
+                          href={`mailto:${translations[language].contactInfoEmail}`}
+                          className="text-foreground hover:text-primary transition-colors"
+                        >
+                          {translations[language].contactInfoEmail}
+                        </a>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div className="flex items-start space-x-3">
+                      <Phone className="text-primary mt-1" size={20} />
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Phone
+                        </p>
+                        <a
+                          href={`tel:${translations[language].contactInfoPhone}`}
+                          className="text-foreground hover:text-primary transition-colors"
+                        >
+                          {translations[language].contactInfoPhone}
+                        </a>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="text-primary mt-1" size={20} />
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Location
+                        </p>
+                        <p className="text-foreground">
+                          {translations[language].contactInfoAddress}
+                        </p>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {translations[language].contactFollowUs}
+                      </p>
+                      <div className="flex space-x-3">
+                        {socialMediaLinks.map((social) => (
+                          <motion.a
+                            key={social.name}
+                            href={social.url}
+                            className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            aria-label={social.name}
+                          >
+                            <social.icon size={18} />
+                          </motion.a>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ------------------------ AppContent & App ------------------------ */
 
 const AppContent = ({
   language,
@@ -920,15 +1478,40 @@ const AppContent = ({
           </>
         )
       case "about":
-        return <AboutPage language={language} setActiveSection={setActiveSection} />
+        return (
+          <AboutPage
+            language={language}
+            setActiveSection={setActiveSection}
+          />
+        )
       case "services":
-        return <ServicesPage language={language} setActiveSection={setActiveSection} />
+        return (
+          <ServicesPage
+            language={language}
+            setActiveSection={setActiveSection}
+          />
+        )
       case "contact":
-        return <ContactPage language={language} setActiveSection={setActiveSection} />
+        return (
+          <ContactPage
+            language={language}
+            setActiveSection={setActiveSection}
+          />
+        )
       case "impressum":
-        return <ImpressumPage language={language} onBack={() => setActiveSection("home")} />
+        return (
+          <ImpressumPage
+            language={language}
+            onBack={() => setActiveSection("home")}
+          />
+        )
       case "privacy-policy":
-        return <PrivacyPolicyPage language={language} onBack={() => setActiveSection("home")} />
+        return (
+          <PrivacyPolicyPage
+            language={language}
+            onBack={() => setActiveSection("home")}
+          />
+        )
       default:
         return null
     }
@@ -961,112 +1544,6 @@ const AppContent = ({
   )
 }
 
-// Footer component inline
-const Footer = ({
-  language,
-  setActiveSection,
-}: {
-  language: "en" | "de"
-  setActiveSection: (section: string) => void
-}) => {
-  return (
-    <footer className="bg-muted/30 border-t border-border py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
-          <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold text-primary mb-4">Lumora</h3>
-            <p className="text-muted-foreground mb-4">{translations[language].footerDescription}</p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">{translations[language].footerQuickLinks}</h4>
-            <ul className="space-y-2">
-              <li>
-                <button
-                  onClick={() => setActiveSection("home")}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {translations[language].navHome}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setActiveSection("services")}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {translations[language].navServices}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setActiveSection("about")}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {translations[language].navAbout}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setActiveSection("contact")}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {translations[language].navContact}
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold mb-4">{translations[language].footerLegal}</h4>
-            <ul className="space-y-2">
-              <li>
-                <button
-                  onClick={() => setActiveSection("impressum")}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {translations[language].footerImpressum}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setActiveSection("privacy-policy")}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {translations[language].footerPrivacy}
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <Separator className="my-8" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Lumora Marketing. {translations[language].footerRights}
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            {["Instagram", "TikTok"].map((social) => (
-              <motion.a
-                key={social}
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-              >
-                {social}
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-// Main App Component
 export default function App() {
   const [language, setLanguage] = useState<"en" | "de">("de")
   return (
@@ -1076,396 +1553,3 @@ export default function App() {
   )
 }
 
-const ContactPage = ({
-  language,
-  setActiveSection,
-}: {
-  language: "en" | "de"
-  setActiveSection: (section: string) => void
-}) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    service: "",
-    message: "",
-  })
-  const [errors, setErrors] = useState<Record<string, string>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email format"
-    }
-
-    if (!formData.service) {
-      newErrors.service = "Please select a service"
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required"
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) {
-      return
-    }
-
-    setIsSubmitting(true)
-    setSubmitStatus("idle")
-
-    try {
-      // Web3Forms API endpoint
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "8a88e835-5ae0-4a39-936d-ce0829a6b11a",
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          service: formData.service,
-          message: formData.message,
-          to: "info@lumoramarketing.de",
-          subject: `New Contact Form Submission from ${formData.name}`,
-        }),
-      })
-
-      const result = await response.json()
-
-      if (result.success) {
-        console.log("[v0] Form submitted successfully:", formData)
-        setSubmitStatus("success")
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          company: "",
-          service: "",
-          message: "",
-        })
-        setErrors({})
-
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          setSubmitStatus("idle")
-        }, 5000)
-      } else {
-        throw new Error("Form submission failed")
-      }
-    } catch (error) {
-      console.error("[v0] Form submission error:", error)
-      setSubmitStatus("error")
-
-      // Reset error message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle")
-      }, 5000)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: "" }))
-    }
-  }
-
-  const services = [
-    { value: "video", label: translations[language].contactServiceVideo },
-    { value: "photo", label: translations[language].contactServicePhoto },
-    { value: "social-content", label: translations[language].contactServiceSocialContent },
-    { value: "social-management", label: translations[language].contactServiceSocialManagement },
-    { value: "website", label: translations[language].contactServiceWebsite },
-    { value: "all", label: translations[language].contactServiceAll },
-  ]
-
-  const socialMediaLinks = [
-    //{ name: "LinkedIn", icon: Linkedin, url: "#" },
-    { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/lumora.marketingagentur?igsh=YzVrZ2didTFlZTQz&utm_source=qr" },
-    //{ name: "Twitter", icon: Twitter, url: "#" },
-    { name: "TikTok", icon: Music, url: "https://www.tiktok.com/@lumora.marketingagentur?_r=1&_t=ZN-91B086NiuKE" },
-  ]
-
-  return (
-    <div className="pt-24">
-      {/* Hero Section */}
-      <section className="pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Badge variant="secondary" className="mb-4">
-              {translations[language].contactTitle}
-            </Badge>
-            <h1 className="text-4xl md:text-6xl mb-6">
-              {translations[language].contactHeroTitle.split("{highlight}")[0]}
-              <span className="text-primary">{translations[language].contactHeroTitleHighlight}</span>
-              {translations[language].contactHeroTitle.split("{highlight}")[1]}
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {translations[language].contactHeroDescription}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Form - Takes 2 columns */}
-            <div className="lg:col-span-2">
-              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                <Card className="border-2">
-                  <CardHeader>
-                    <CardTitle className="text-2xl">{translations[language].contactFormTitle}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {/* Success Alert */}
-                    {submitStatus === "success" && (
-                      <Alert className="mb-6 border-green-500 bg-green-50 dark:bg-green-950">
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
-                        <AlertTitle className="text-green-800 dark:text-green-200">
-                          {translations[language].contactSuccessTitle}
-                        </AlertTitle>
-                        <AlertDescription className="text-green-700 dark:text-green-300">
-                          {translations[language].contactSuccessMessage}
-                        </AlertDescription>
-                      </Alert>
-                    )}
-
-                    {/* Error Alert */}
-                    {submitStatus === "error" && (
-                      <Alert className="mb-6 border-red-500 bg-red-50 dark:bg-red-950">
-                        <AlertCircle className="h-4 w-4 text-red-600" />
-                        <AlertTitle className="text-red-800 dark:text-red-200">
-                          {translations[language].contactErrorTitle}
-                        </AlertTitle>
-                        <AlertDescription className="text-red-700 dark:text-red-300">
-                          {translations[language].contactErrorMessage}
-                        </AlertDescription>
-                      </Alert>
-                    )}
-
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      {/* Name Field */}
-                      <div>
-                        <Input
-                          type="text"
-                          placeholder={translations[language].contactNamePlaceholder}
-                          value={formData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
-                          className={errors.name ? "border-red-500" : ""}
-                        />
-                        {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
-                      </div>
-
-                      {/* Email Field */}
-                      <div>
-                        <Input
-                          type="email"
-                          placeholder={translations[language].contactEmailPlaceholder}
-                          value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
-                          className={errors.email ? "border-red-500" : ""}
-                        />
-                        {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
-                      </div>
-
-                      {/* Phone and Company - Grid */}
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <Input
-                            type="tel"
-                            placeholder={translations[language].contactPhonePlaceholder}
-                            value={formData.phone}
-                            onChange={(e) => handleInputChange("phone", e.target.value)}
-                          />
-                        </div>
-                        <div>
-                          <Input
-                            type="text"
-                            placeholder={translations[language].contactCompanyPlaceholder}
-                            value={formData.company}
-                            onChange={(e) => handleInputChange("company", e.target.value)}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Service Select */}
-                      <div>
-                        <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
-                          <SelectTrigger className={errors.service ? "border-red-500" : ""}>
-                            <SelectValue placeholder={translations[language].contactServicePlaceholder} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {services.map((service) => (
-                              <SelectItem key={service.value} value={service.value}>
-                                {service.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        {errors.service && <p className="text-sm text-red-500 mt-1">{errors.service}</p>}
-                      </div>
-
-                      {/* Message Field */}
-                      <div>
-                        <Textarea
-                          placeholder={translations[language].contactMessagePlaceholder}
-                          value={formData.message}
-                          onChange={(e) => handleInputChange("message", e.target.value)}
-                          className={`min-h-[150px] ${errors.message ? "border-red-500" : ""}`}
-                        />
-                        {errors.message && <p className="text-sm text-red-500 mt-1">{errors.message}</p>}
-                      </div>
-
-                      {/* Submit Button */}
-                      <Button type="submit" size="lg" className="w-full group" disabled={isSubmitting}>
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            {translations[language].contactSubmitting}
-                          </>
-                        ) : (
-                          <>
-                            {translations[language].contactSubmitButton}
-                            <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-                          </>
-                        )}
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
-
-            {/* Sidebar - Contact Info & Quick Book */}
-            <div className="space-y-6">
-              {/* Quick Book Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Card className="bg-primary text-primary-foreground border-0">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{translations[language].contactQuickBookTitle}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="mb-6 opacity-90">{translations[language].contactQuickBookDescription}</p>
-                    <Button
-                      size="lg"
-                      variant="secondary"
-                      className="w-full group"
-                      onClick={() => window.open("https://calendly.com/lumora-marketing", "_blank")}
-                    >
-                      {translations[language].contactQuickBookButton}
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Contact Info Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-xl">{translations[language].contactInfoTitle}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <Mail className="text-primary mt-1" size={20} />
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Email</p>
-                        <a
-                          href={`mailto:${translations[language].contactInfoEmail}`}
-                          className="text-foreground hover:text-primary transition-colors"
-                        >
-                          {translations[language].contactInfoEmail}
-                        </a>
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    <div className="flex items-start space-x-3">
-                      <Phone className="text-primary mt-1" size={20} />
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Phone</p>
-                        <a
-                          href={`tel:${translations[language].contactInfoPhone}`}
-                          className="text-foreground hover:text-primary transition-colors"
-                        >
-                          {translations[language].contactInfoPhone}
-                        </a>
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="text-primary mt-1" size={20} />
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Location</p>
-                        <p className="text-foreground">{translations[language].contactInfoAddress}</p>
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-3">{translations[language].contactFollowUs}</p>
-                      <div className="flex space-x-3">
-                        {socialMediaLinks.map((social) => (
-                          <motion.a
-                            key={social.name}
-                            href={social.url}
-                            className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            aria-label={social.name}
-                          >
-                            <social.icon size={18} />
-                          </motion.a>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  )
-}
