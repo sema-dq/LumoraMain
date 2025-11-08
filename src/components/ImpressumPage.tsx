@@ -61,11 +61,17 @@ export const ImpressumPage: React.FC<ImpressumPageProps> = ({ language, onBack }
                   <br />
                   Stiftstrasse 2, 79618 Rheinfelden, Deutschland
                   <br />
+                  Registergericht: <Zuständiges Gericht>
+                  <br />
+                  Registernummer: <Nummer>
+                  <br />
                   Geschäftsführer: William Yan
                   <br />
-                  Gesellschafter: Simon Gwangwaa
+                  Umsatzsteuer-Identifikationsnummer: DE<Nummer>
                   <br />
-                  Gesellschafter: Robin Kuti 
+                  Zuständige Aufsichtsbehörde:
+                  <br />
+                  Stadtverwaltung Rheinfelden, Kirchplatz 2, 79618 Rheinfelden, Deutschland
                 </div>
               </CardContent>
             </Card>
