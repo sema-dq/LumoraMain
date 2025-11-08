@@ -1,7 +1,7 @@
 "use client"
 
-import type React from "react"
-import { motion } from "motion/react"
+import React from "react"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "./ui/button"
@@ -38,7 +38,11 @@ export const ImpressumPage: React.FC<ImpressumPageProps> = ({ language, onBack }
   return (
     <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <Button variant="ghost" onClick={onBack} className="mb-6 p-0 h-auto font-normal">
             <ArrowLeft size={16} className="mr-2" />
             {t.backButton}
@@ -61,13 +65,13 @@ export const ImpressumPage: React.FC<ImpressumPageProps> = ({ language, onBack }
                   <br />
                   Stiftstrasse 2, 79618 Rheinfelden, Deutschland
                   <br />
-                  Registergericht: <Zuständiges Gericht>
+                  Registergericht: <span className="text-muted-foreground">Freiburg i. Br.</span>
                   <br />
-                  Registernummer: <Nummer>
+                  Registernummer: <span className="text-muted-foreground">HRB 999999</span>
                   <br />
                   Geschäftsführer: William Yan
                   <br />
-                  Umsatzsteuer-Identifikationsnummer: DE<Nummer>
+                  Umsatzsteuer-Identifikationsnummer: <span className="text-muted-foreground">DE123456789</span>
                   <br />
                   Zuständige Aufsichtsbehörde:
                   <br />
@@ -96,37 +100,35 @@ export const ImpressumPage: React.FC<ImpressumPageProps> = ({ language, onBack }
                 <CardTitle>{t.responsibilityTitle}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div>
-                  {language === "de" ? (
-                    <p>
-                      Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
-                      <br />
-                      William Yan
-                      <br />
-                      Simon Gwangwaa
-                      <br />
-                      Robin Kuti
-                      <br />
-                      Lumora UG (haftungsbeschränkt)
-                      <br />
-                      E-Mail: info@lumoramarketing.de
-                    </p>
-                  ) : (
-                    <p>
-                      Responsible for content according to § 55 Abs. 2 RStV:
-                      <br />
-                      William Yan 
-                      <br />
-                      Simon Gwangwaa
-                      <br />
-                      Robin Kuti
-                      <br />
-                      Lumora UG (haftungsbeschränkt)
-                      <br />
-                      E-Mail: info@lumoramarketing.de
-                    </p>
-                  )}
-                </div>
+                {language === "de" ? (
+                  <p>
+                    Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
+                    <br />
+                    William Yan
+                    <br />
+                    Simon Gwangwaa
+                    <br />
+                    Robin Kuti
+                    <br />
+                    Lumora UG (haftungsbeschränkt)
+                    <br />
+                    E-Mail: info@lumoramarketing.de
+                  </p>
+                ) : (
+                  <p>
+                    Responsible for content according to § 55 Abs. 2 RStV:
+                    <br />
+                    William Yan
+                    <br />
+                    Simon Gwangwaa
+                    <br />
+                    Robin Kuti
+                    <br />
+                    Lumora UG (haftungsbeschränkt)
+                    <br />
+                    E-Mail: info@lumoramarketing.de
+                  </p>
+                )}
               </CardContent>
             </Card>
 
@@ -140,33 +142,26 @@ export const ImpressumPage: React.FC<ImpressumPageProps> = ({ language, onBack }
                   {language === "de" ? (
                     <>
                       <p>
-                        <strong>Haftung für Inhalte:</strong> Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für
-                        eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10
-                        TMG sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte oder
-                        gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine
-                        rechtswidrige Tätigkeit hinweisen.
+                        <strong>Haftung für Inhalte:</strong> Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+                        Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen,
+                        die auf eine rechtswidrige Tätigkeit hinweisen.
                       </p>
                       <p>
                         <strong>Haftung für Links:</strong> Unser Angebot enthält Links zu externen Websites Dritter,
-                        auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch
-                        keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
-                        oder Betreiber der Seiten verantwortlich.
+                        auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
+                        Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
                       </p>
                       <p>
-                        <strong>Urheberrecht:</strong> Die durch die Seitenbetreiber erstellten Inhalte und Werke auf
-                        diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
-                        Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der
-                        schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                        <strong>Urheberrecht:</strong> Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+                        Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
                       </p>
                     </>
                   ) : (
                     <>
                       <p>
                         <strong>Liability for Content:</strong> As service providers, we are liable for our own content
-                        on these pages in accordance with general laws according to Section 7, Paragraph 1 of the TMG
-                        (Telemediengesetz – Tele Media Act by German law). However, pursuant to sections 8 to 10 of the
-                        TMG, we are not under obligation to monitor external information provided or stored on our
-                        website.
+                        on these pages in accordance with general laws according to Section 7, Paragraph 1 of the TMG.
+                        However, pursuant to sections 8 to 10 of the TMG, we are not under obligation to monitor external information provided or stored on our website.
                       </p>
                       <p>
                         <strong>Liability for Links:</strong> Our offer contains links to external websites of third
