@@ -799,7 +799,7 @@ const FinalCTA = ({
   language: "en" | "de"
   setActiveSection: (section: string) => void
 }) => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">
+  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#2e0885] to-[#220e5b] text-white">
     <div className="max-w-4xl mx-auto text-center">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -817,7 +817,7 @@ const FinalCTA = ({
           <Button
             size="lg"
             variant="secondary"
-            className="group bg-white text-slate-900 hover:bg-slate-100 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+            className="group bg-white text-[#2e0885] hover:bg-[#f3f1fa] hover:text-[#2e0885] rounded-full transition-colors"
             onClick={() => setActiveSection("contact")}
           >
             {translations[language].finalCTAButton1}
