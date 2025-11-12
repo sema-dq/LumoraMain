@@ -316,11 +316,11 @@ export const translations = {
     heroTitle: "Wir lassen Marken durch {highlight} Social-Media-Strategien wachsen",
     heroTitleHighlight: "datengetriebene",
     heroParagraph:
-      "Verwandeln Sie Ihre Social-Media-Präsenz in einen leistungsstarken Wachstumsmotor. Wir erstellen überzeugende Inhalte und führen gezielte Kampagnen durch, die messbaren ROI liefern.",
+      "Individuell abgestimmter Content, der überzeugt. Wir erstellen hochwertige Fotos, Videos und Designs, die Ihre Zielgruppe erreichen und einen bleibenden Eindruck hinterlassen",
     heroBookCall: "Strategiegespräch buchen",
     heroWatchCaseStudy: "Fallstudie ansehen",
     heroImageAlt: "Social-Media-Marketing-Team bei der Arbeit",
-    heroGrowthStatValue: "+300%",
+    heroGrowthStatValue: "",
     heroGrowthStatLabel: "Durchschnittliches Wachstum",
 
     // Services
@@ -378,24 +378,24 @@ export const translations = {
     testimonial1Company: "KinderOase",
     testimonial1Role: "Kindertagesstätte",
     testimonial1Content:
-      "Lumora hat unsere Online-Präsenz komplett transformiert. Innerhalb von 3 Monaten stiegen unsere Anmeldeanfragen um 250% und wir sind jetzt vollständig ausgebucht. Ihr Verständnis für unsere Zielgruppe war außergewöhnlich.",
+      "Die Zusammenarbeit mit Lumora war von Anfang an angenehm und unkompliziert. Sie haben sich wirklich Zeit genommen, unsere Werte und Zielgruppe zu verstehen, und das Ergebnis spiegelt genau das wider. Wir fühlen uns mit unserer neuer Website gut aufgehoben.",
     testimonial2Company: "CGI",
     testimonial2Role: "Christliche Gemeinde",
     testimonial2Content:
-      "Die Zusammenarbeit mit Lumora war ein Game-Changer für unsere Markensichtbarkeit. Ihr strategischer Ansatz für Social Media und Content-Erstellung half uns, Entscheidungsträger zu erreichen und konsistent hochwertige Leads zu generieren.",
+      "Mit Lumora konnten wir unsere Botschaft neu verpacken und sichtbar machen. Die frisch erstellte Website und der Content greifen genau das auf, was uns als Gemeinschaft ausmacht klar, herzlich und einladend. So erreichen wir mehr Menschen und teilen unseren Glauben auf zeitgemäße Weise.",
     testimonial3Company: "Restaurant FUDU",
     testimonial3Role: "Fine Dining",
     testimonial3Content:
-      "Das Team von Lumora erstellt nicht nur schöne Inhalte - sie verstehen das Restaurantgeschäft. Unsere Reservierungen stiegen um 180% und unser Social-Media-Engagement ist durch die Decke gegangen.",
+      "Das Team von Lumora hat schnell ein Gefühl für unser Restaurant entwickelt. Schon die erste Demo der Website trifft genau unseren Stil und zeigt, dass sie wissen, worauf es in der Gastronomie ankommt.",
     testimonial4Company: "Hotel Danner",
     testimonial4Role: "Boutique Hotel",
     testimonial4Content:
-      "Lumoras umfassender Ansatz für digitales Marketing half uns, uns in einem wettbewerbsintensiven Markt abzuheben. Direktbuchungen stiegen um 320% und unsere Markenbekanntheit war noch nie stärker.",
+      "Bei Lumora merkt man, dass sie wissen, wie wichtig ein überzeugender erster Eindruck ist. Sie haben unser Hotel online modern und einladend präsentiert, und schon die Vorschau zeigt, dass hier mit viel Sorgfalt gearbeitet wird.",
 
     // Final CTA
     finalCTAHeading: "Bereit, Ihre Marke zu vergrößern?",
     finalCTADescription:
-      "Schließen Sie sich über 200 Marken an, die uns vertrauen, ihr Social Media-Wachstum zu managen. Buchen Sie noch heute ein kostenloses Strategiegespräch.",
+      "Stärken Sie Ihre Online-Präsenz mit einer Strategie, die zu Ihrer Marke passt. Vereinbaren Sie jetzt Ihr kostenloses Strategiegespräch.",
     finalCTAButton1: "Strategiegespräch buchen",
     finalCTAButton2: "Unsere Arbeit ansehen",
 
