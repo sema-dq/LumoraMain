@@ -313,8 +313,8 @@ export const translations = {
 
     // Hero Section
     heroBadge: "Social-Media-Agentur",
-    heroTitle: "Wir lassen Marken durch {highlight} Social-Media-Strategien wachsen",
-    heroTitleHighlight: "datengetriebene",
+    heroTitle: "Wir gestalten {highlight} Strategien, die Ihre Marke online zum Strahlen bringen.",
+    heroTitleHighlight: "durchdachte",
     heroParagraph:
       "Individuell abgestimmter Content, der überzeugt. Wir erstellen hochwertige Fotos, Videos und Designs, die Ihre Zielgruppe erreichen und einen bleibenden Eindruck hinterlassen",
     heroBookCall: "Strategiegespräch buchen",
