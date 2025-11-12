@@ -1483,7 +1483,7 @@ const ContactPage = ({
                       className="w-full group"
                       onClick={() =>
                         window.open(
-                          "https://calendly.com/lumora-marketing",
+                          "https://calendly.com/lumoramarketing-info",
                           "_blank",
                         )
                       }
