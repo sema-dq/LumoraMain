@@ -401,7 +401,7 @@ export const translations = {
 
     // Footer
     footerDescription:
-      "Wir helfen Marken beim Wachstum durch strategisches Social-Media-Marketing und datengetriebene Werbekampagnen.",
+      "Stärken Sie Ihre Online-Präsenz mit einer Strategie, die zu Ihrer Marke passt. Vereinbaren Sie jetzt Ihr kostenloses Strategiegespräch.",
     footerServices: "Dienstleistungen",
     footerServicesSocialMediaManagement: "Social-Media-Management",
     footerServicesPaidAdvertising: "Bezahlte Werbung",
@@ -425,7 +425,7 @@ export const translations = {
     contactHeroTitle: "Lassen Sie uns Ihre Marke {highlight} wachsen lassen",
     contactHeroTitleHighlight: "gemeinsam",
     contactHeroDescription:
-      "Vereinbaren Sie einen Termin oder senden Sie uns eine Nachricht. Wir melden uns innerhalb von 24 Stunden mit einer maßgeschneiderten Strategie für Ihr Unternehmen.",
+      "Vereinbaren Sie einen Termin oder senden Sie uns eine Nachricht. Im nächsten Schritt beraten wir sie bei einer Bedarfsanalyse und gestalten ihre personalisierte Marketing Strategie.",
     contactFormTitle: "Senden Sie uns eine Nachricht",
     contactNamePlaceholder: "Ihr Name *",
     contactEmailPlaceholder: "Ihre E-Mail *",
