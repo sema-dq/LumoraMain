@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 348.86 62.47">
   <defs>
+    <linearGradient id="lightPurpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4e8ff"/>   <!-- very light lavender -->
+      <stop offset="100%" stop-color="#e4d4ff"/> <!-- slightly deeper light purple -->
+    </linearGradient>
+
     <style>
       .cls-1 {
-        fill: #fff;
+        fill: url(#lightPurpleGrad);
       }
     </style>
   </defs>
+
   <path class="cls-1" d="M85.76,1.36h-10.01v40.14c0,6.48-5.26,11.73-11.73,11.73h-4.45c-6.48,0-11.73-5.25-11.73-11.73V1.36h-10.02v38.63h.02c-.02.29-.02.58-.02.87,0,11.94,9.68,21.61,21.61,21.61h4.72c5.97,0,11.37-2.42,15.28-6.33s6.33-9.31,6.33-15.28c0-.29-.01-.58-.02-.87h.02V1.36Z"/>
   <polygon class="cls-1" points="10.72 53.23 10.72 1.35 0 1.35 0 53.23 0 61.25 10.72 61.25 30.84 61.25 30.84 53.23 10.72 53.23"/>
   <polygon class="cls-1" points="151.94 1.35 130.25 48.31 108.81 1.35 97.99 1.35 97.99 61.35 108.81 61.35 108.81 20.67 126.91 61.35 133.89 61.35 151.94 21.21 151.94 61.35 162.76 61.35 162.76 1.35 151.94 1.35"/>
